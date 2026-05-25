@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>윤현선</title>
+<meta name="description" content="3박 4일, 오직 코딩에만 몰입하는 시간. 아이디어를 실제 작동하는 프로덕트로 만드는 바이브 코딩 부트캠프.">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-soft: #12121c;
+    --card: #16161f;
+    --line: #26263a;
+    --text: #e7e7ef;
+    --muted: #9a9ab0;
+    --brand: #7c5cff;
+    --brand-2: #00e0c6;
+    --accent: #ff5c8a;
+    --radius: 18px;
+    --maxw: 1120px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+      "Pretendard", "Malgun Gothic", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,15,0.7);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.4px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .logo .dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    box-shadow: 0 0 16px var(--brand);
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--muted); font-size: 15px; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    font-weight: 700; font-size: 15px;
+    padding: 12px 22px; border-radius: 999px;
+    border: none; cursor: pointer;
+    transition: transform .15s ease, box-shadow .2s ease;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(124,92,255,.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(124,92,255,.55); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--brand); }
+
+  @media (max-width: 760px) { .nav-links { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 92px 0 84px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    width: 720px; height: 720px;
+    top: -260px; left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(124,92,255,.35), transparent 60%);
+    filter: blur(20px);
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+    font-size: 14px; color: var(--brand-2);
+    margin-bottom: 26px;
+  }
+  .badge .pulse {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--brand-2);
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0,224,198,.6); }
+    70% { box-shadow: 0 0 0 9px rgba(0,224,198,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,224,198,0); }
+  }
+  .hero h1 {
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    font-weight: 900;
+    margin-bottom: 22px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(120deg, var(--brand), var(--brand-2), var(--accent));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    font-size: clamp(17px, 2.4vw, 21px);
+    color: var(--muted);
+    max-width: 640px; margin: 0 auto 38px;
+  }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .hero-meta {
+    margin-top: 44px;
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-meta .item { text-align: center; }
+  .hero-meta .num {
+    font-size: 30px; font-weight: 800;
+    background: linear-gradient(120deg, var(--brand), var(--brand-2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-meta .lbl { font-size: 14px; color: var(--muted); }
+
+  /* ---------- Section base ---------- */
+  section.block { padding: 84px 0; }
+  .eyebrow {
+    color: var(--brand-2); font-weight: 700; font-size: 14px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px;
+    text-align: center;
+  }
+  .section-title {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 850; letter-spacing: -1px;
+    text-align: center; margin-bottom: 14px;
+  }
+  .section-sub {
+    text-align: center; color: var(--muted);
+    max-width: 600px; margin: 0 auto 54px; font-size: 17px;
+  }
+
+  /* ---------- Features ---------- */
+  .grid { display: grid; gap: 22px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px 28px;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--brand); }
+  .card .ico {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 18px;
+    background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(0,224,198,.18));
+  }
+  .card h3 { font-size: 20px; margin-bottom: 10px; letter-spacing: -0.4px; }
+  .card p { color: var(--muted); font-size: 15.5px; }
+
+  /* ---------- Schedule / Timeline ---------- */
+  .schedule { background: var(--bg-soft); }
+  .timeline { max-width: 760px; margin: 0 auto; }
+  .day {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .day:last-child { border-bottom: none; }
+  .day .dno {
+    font-weight: 800; font-size: 17px; color: var(--brand);
+  }
+  .day .dno span { display: block; color: var(--muted); font-size: 13px; font-weight: 500; margin-top: 4px; }
+  .day h4 { font-size: 20px; margin-bottom: 8px; letter-spacing: -0.4px; }
+  .day ul { list-style: none; color: var(--muted); font-size: 15.5px; }
+  .day ul li { padding-left: 20px; position: relative; margin-bottom: 5px; }
+  .day ul li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--brand-2);
+  }
+  @media (max-width: 620px) {
+    .day { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* ---------- Pricing ---------- */
+  .price-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 800px; margin: 0 auto; }
+  @media (max-width: 720px) { .price-grid { grid-template-columns: 1fr; } }
+  .price {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 34px 30px; position: relative;
+  }
+  .price.featured {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand), 0 20px 50px rgba(124,92,255,.2);
+  }
+  .price .tag {
+    position: absolute; top: -13px; right: 24px;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+    color: #fff; font-size: 12px; font-weight: 700;
+    padding: 5px 14px; border-radius: 999px;
+  }
+  .price .name { font-size: 16px; color: var(--muted); margin-bottom: 8px; }
+  .price .amount { font-size: 40px; font-weight: 900; letter-spacing: -1px; }
+  .price .amount small { font-size: 16px; color: var(--muted); font-weight: 500; }
+  .price ul { list-style: none; margin: 22px 0 28px; }
+  .price ul li { padding: 8px 0 8px 26px; position: relative; color: var(--muted); font-size: 15px; }
+  .price ul li::before { content: "✓"; position: absolute; left: 0; color: var(--brand-2); font-weight: 800; }
+  .price .btn { width: 100%; }
+
+  /* ---------- CTA ---------- */
+  .cta-final {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(0,224,198,.1));
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 64px 30px;
+    margin: 40px 0;
+  }
+  .cta-final h2 { font-size: clamp(28px, 5vw, 46px); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
+  .cta-final p { color: var(--muted); font-size: 18px; margin-bottom: 32px; }
+
+  /* ---------- FAQ ---------- */
+  .faq { max-width: 760px; margin: 0 auto; }
+  details {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 4px 22px; margin-bottom: 14px;
+  }
+  details[open] { border-color: var(--brand); }
+  summary {
+    cursor: pointer; list-style: none; font-weight: 600; font-size: 17px;
+    padding: 18px 0; display: flex; justify-content: space-between; align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 24px; color: var(--brand); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--muted); padding: 0 0 20px; font-size: 15.5px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="dot"></span> 바이브 코딩</div>
+    <nav class="nav-links">
+      <a href="#features">특징</a>
+      <a href="#schedule">일정</a>
+      <a href="#price">참가비</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#apply" class="btn btn-primary">지금 신청</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge"><span class="pulse"></span> 2026 여름 시즌 모집 중 · 선착순 20명</span>
+    <h1>3박 4일,<br><span class="grad">코드에만 몰입</span>하는 시간</h1>
+    <p class="lead">방해 없는 공간에서, 아이디어를 실제로 작동하는 프로덕트로.
+      바이브 코딩 부트캠프에서 4일 만에 0에서 1을 만듭니다.</p>
+    <div class="hero-cta">
+      <a href="#apply" class="btn btn-primary">참가 신청하기 →</a>
+      <a href="#schedule" class="btn btn-ghost">일정 살펴보기</a>
+    </div>
+    <div class="hero-meta">
+      <div class="item"><div class="num">4일</div><div class="lbl">몰입 부트캠프</div></div>
+      <div class="item"><div class="num">20명</div><div class="lbl">소수 정예</div></div>
+      <div class="item"><div class="num">1:1</div><div class="lbl">멘토링 지원</div></div>
+      <div class="item"><div class="num">100%</div><div class="lbl">프로젝트 완성</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block" id="features">
+  <div class="wrap">
+    <p class="eyebrow">Why Vibe Coding</p>
+    <h2 class="section-title">왜 3박 4일인가</h2>
+    <p class="section-sub">일상의 방해를 끊고, 오직 만드는 일에만 집중하는 환경을 설계했습니다.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="ico">🚀</div>
+        <h3>몰입의 흐름</h3>
+        <p>알림도 회의도 없는 4일. 깊은 몰입 상태에서 평소 한 달 걸릴 일을 며칠 만에 끝냅니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🤝</div>
+        <h3>현업 멘토 동행</h3>
+        <p>실무 개발자와 디자이너가 상주합니다. 막히는 순간 바로 옆에서 함께 풀어갑니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🛠️</div>
+        <h3>AI 페어 코딩</h3>
+        <p>최신 AI 코딩 도구를 활용해 아이디어를 빠르게 프로토타이핑하는 워크플로우를 익힙니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🌿</div>
+        <h3>리트릿 공간</h3>
+        <p>자연 속 숙소에서 먹고 자며 코딩합니다. 식사·간식·작업 공간 모두 준비되어 있습니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">👥</div>
+        <h3>소수 정예 커뮤니티</h3>
+        <p>20명의 동료와 함께. 캠프가 끝나도 이어지는 빌더 네트워크를 얻습니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎤</div>
+        <h3>데모데이</h3>
+        <p>마지막 날, 만든 결과물을 모두 앞에서 발표합니다. 끝이 아닌 시작점을 만듭니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="block schedule" id="schedule">
+  <div class="wrap">
+    <p class="eyebrow">Schedule</p>
+    <h2 class="section-title">4일간의 여정</h2>
+    <p class="section-sub">하루하루가 다음 단계로 자연스럽게 이어지도록 구성했습니다.</p>
+    <div class="timeline">
+      <div class="day">
+        <div class="dno">DAY 1<span>도착 · 킥오프</span></div>
+        <div>
+          <h4>아이디어를 정의하다</h4>
+          <ul>
+            <li>오리엔테이션 & 팀/개인 프로젝트 선정</li>
+            <li>아이디어 스코핑 워크숍</li>
+            <li>개발 환경 & AI 도구 세팅</li>
+            <li>저녁: 네트워킹 디너</li>
+          </ul>
+        </div>
+      </div>
+      <div class="day">
+        <div class="dno">DAY 2<span>빌드 스프린트</span></div>
+        <div>
+          <h4>핵심 기능을 만들다</h4>
+          <ul>
+            <li>MVP 기능 설계 & 데이터 모델링</li>
+            <li>집중 코딩 세션 (오전·오후)</li>
+            <li>1:1 멘토링 체크인</li>
+          </ul>
+        </div>
+      </div>
+      <div class="day">
+        <div class="dno">DAY 3<span>완성 & 다듬기</span></div>
+        <div>
+          <h4>작동하게 만들다</h4>
+          <ul>
+            <li>기능 통합 & 버그 픽스</li>
+            <li>UI/UX 다듬기 세션</li>
+            <li>배포 & 발표 준비</li>
+          </ul>
+        </div>
+      </div>
+      <div class="day">
+        <div class="dno">DAY 4<span>데모데이</span></div>
+        <div>
+          <h4>세상에 보여주다</h4>
+          <ul>
+            <li>최종 점검 & 리허설</li>
+            <li>데모데이 발표</li>
+            <li>회고 & 수료식</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" id="price">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2 class="section-title">참가비</h2>
+    <p class="section-sub">숙박, 식사, 멘토링, 작업 공간이 모두 포함된 올인클루시브 패키지입니다.</p>
+    <div class="price-grid">
+      <div class="price">
+        <div class="name">얼리버드</div>
+        <div class="amount">₩690,000<small> / 1인</small></div>
+        <ul>
+          <li>3박 4일 숙박 (2인 1실)</li>
+          <li>전 일정 식사 & 간식</li>
+          <li>현업 멘토 그룹 멘토링</li>
+          <li>데모데이 참가</li>
+        </ul>
+        <a href="#apply" class="btn btn-ghost">신청하기</a>
+      </div>
+      <div class="price featured">
+        <div class="tag">추천</div>
+        <div class="name">프리미엄</div>
+        <div class="amount">₩890,000<small> / 1인</small></div>
+        <ul>
+          <li>3박 4일 숙박 (1인 1실)</li>
+          <li>전 일정 식사 & 간식</li>
+          <li>1:1 전담 멘토링</li>
+          <li>데모데이 참가 & 수료증</li>
+          <li>캠프 후 1개월 온라인 지원</li>
+        </ul>
+        <a href="#apply" class="btn btn-primary">신청하기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="wrap" id="apply">
+  <div class="cta-final">
+    <h2>4일 후, 당신은<br>무언가를 만들어낸 사람이 됩니다</h2>
+    <p>선착순 20명. 마감되기 전에 자리를 확보하세요.</p>
+    <a href="mailto:hello@vibecoding.camp?subject=바이브 코딩 3박4일 참가 신청" class="btn btn-primary">지금 참가 신청하기 →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="section-title">자주 묻는 질문</h2>
+    <div class="faq">
+      <details open>
+        <summary>코딩 초보도 참가할 수 있나요?</summary>
+        <p>네. 기본적인 프로그래밍 경험이 있으면 충분합니다. AI 도구와 멘토의 도움으로 수준에 맞는 프로젝트를 완성하도록 돕습니다.</p>
+      </details>
+      <details>
+        <summary>무엇을 준비해 가야 하나요?</summary>
+        <p>노트북과 충전기, 편한 옷차림이면 됩니다. 숙소, 식사, 작업 공간, 와이파이는 모두 제공됩니다.</p>
+      </details>
+      <details>
+        <summary>혼자 가도 괜찮을까요?</summary>
+        <p>대부분 혼자 참가합니다. 첫날 네트워킹 세션을 통해 자연스럽게 동료를 만나게 됩니다.</p>
+      </details>
+      <details>
+        <summary>환불 정책이 어떻게 되나요?</summary>
+        <p>캠프 시작 14일 전까지 100% 환불, 7일 전까지 50% 환불됩니다. 이후에는 환불이 어렵습니다.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="logo"><span class="dot"></span> 바이브 코딩</div>
+    <div>© 2026 Vibe Coding Camp. All rights reserved.</div>
+    <div>문의: hello@vibecoding.camp</div>
+  </div>
+</footer>
+
+</body>
+</html>
