@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주의 사계 (Four Seasons of Jeju)</title>
+    <!-- 구글 폰트 적용 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 기본 설정 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 {
+            font-family: 'Hahmlet', serif;
+        }
+        
+        /* 애니메이션 설정 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 움직이는 배경 애니메이션 (핵심 포인트) */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 헤더 / 네비게이션 */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        .logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+        
+        /* 메인 히어로 섹션 (이미지 대신 움직이는 그라데이션) */
+        .hero {
+            height: 100vh;
+            /* 제주 바다와 노을을 연상시키는 그라데이션 */
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-out 1s both;
+        }
+        .btn:hover {
+            background-color: #fff;
+            color: #ff9a9e;
+            transform: scale(1.05);
+        }
+
+        /* 사계절 섹션 */
+        .seasons-section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        .section-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 70px;
+        }
+
+        /* 그리드 레이아웃 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        /* 카드 디자인 */
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            border: 1px solid #eee;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.08);
+        }
+
+        /* 이모지 아이콘 스타일 */
+        .icon-box {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* 각 계절별 테마 색상 */
+        .spring .icon-box { background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%); }
+        .summer .icon-box { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+        .autumn .icon-box { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+        .winter .icon-box { background: linear-gradient(135deg, #e6e9f0 0%, #eef1f5 100%); }
+
+        .season-tag {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #fff;
+            color: #888;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* 반응형 모바일 최적화 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            header { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 -->
+    <header>
+        <a href="#" class="logo">JEJU.</a>
+    </header>
+
+    <!-- 메인 비주얼 (움직이는 그라데이션) -->
+    <section class="hero">
+        <h1>제주의 다채로운 계절</h1>
+        <p>색채와 감각으로 만나는 환상의 섬</p>
+        <a href="#seasons" class="btn">계절 둘러보기</a>
+    </section>
+
+    <!-- 사계절 섹션 (이모지와 컬러) -->
+    <section id="seasons" class="seasons-section">
+        <h2 class="section-title">자연이 그리는 네 가지 색깔</h2>
+        <p class="section-subtitle">봄, 여름, 가을, 겨울. 제주가 선사하는 고유의 색감을 느껴보세요.</p>
+        
+        <div class="grid">
+            <!-- 봄 -->
+            <div class="card spring">
+                <div class="icon-box">🌸</div>
+                <span class="season-tag">Spring</span>
+                <h3>설레는 핑크빛 봄</h3>
+                <p>노랗게 핀 유채꽃과 흩날리는 벚꽃. 따스한 바람이 불어오는 제주의 생동감을 담았습니다.</p>
+            </div>
+
+            <!-- 여름 -->
+            <div class="card summer">
+                <div class="icon-box">🌊</div>
+                <span class="season-tag">Summer</span>
+                <h3>청량한 푸른빛 여름</h3>
+                <p>투명하게 빛나는 협재의 에메랄드빛 바다. 시원한 파도 소리가 들리는 듯한 여름날의 휴식.</p>
+            </div>
+
+            <!-- 가을 -->
+            <div class="card autumn">
+                <div class="icon-box">🍁</div>
+                <span class="season-tag">Autumn</span>
+                <h3>따뜻한 주황빛 가을</h3>
+                <p>바람을 따라 일렁이는 오름의 은빛 억새와 붉게 물든 단풍. 고즈넉한 제주의 정취.</p>
+            </div>
+
+            <!-- 겨울 -->
+            <div class="card winter">
+                <div class="icon-box">❄️</div>
+                <span class="season-tag">Winter</span>
+                <h3>포근한 하얀빛 겨울</h3>
+                <p>한라산에 소복이 내려앉은 순백의 눈꽃. 차가운 공기 속에서도 빛나는 겨울 제주의 매력.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2026 Jeju Four Seasons. All rights reserved. Crafted with CSS.</p>
+    </footer>
+
+</body>
+</html>
